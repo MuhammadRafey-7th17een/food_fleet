@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         toolbarHeight: 180,
@@ -15,7 +15,7 @@ class SignUpPage extends StatelessWidget {
           width: 170,
           height: 170,
         ),
-    ),
+      ),
     );
   }
 }
