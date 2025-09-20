@@ -6,6 +6,10 @@ class LogInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     // gpt start
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -38,11 +42,16 @@ class LogInPage extends StatelessWidget {
             stops: [0.05, 0.37],
           ),
         ),
-        child: Expanded(
-          child: Center(child: Column(children: [
-
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 287,
+              height: 37,
+              decoration: BoxDecoration(color: Color(0xFF8576FF)),
+            ),
           ],
-        )),
         ),
       ),
     );
