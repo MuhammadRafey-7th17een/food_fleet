@@ -43,7 +43,7 @@ class _StoresignupState extends State<Storesignup> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         toolbarHeight: 180,
         backgroundColor: Colors.transparent,
         title: Image.asset(
