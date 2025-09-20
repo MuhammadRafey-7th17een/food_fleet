@@ -51,7 +51,7 @@ class LogInPage extends StatelessWidget {
             children: [
               Container(
                 width: 290,
-                height: 40,
+                height: 50,
                 decoration: BoxDecoration(
                   color: Color(0xFF8576FF),
                   border: Border.all(),
@@ -83,7 +83,7 @@ class LogInPage extends StatelessWidget {
               SizedBox(height: 20),
               Container(
                 width: 290,
-                height: 40,
+                height: 50,
                 decoration: BoxDecoration(
                   color: Color(0xFF8576FF),
                   border: Border.all(),
@@ -92,9 +92,11 @@ class LogInPage extends StatelessWidget {
 
                 child: TextFormField(
                   controller: passwordController,
+
                   obscureText: true,
                   style: const TextStyle(color: Color(0xFFFFD0EC)),
                   decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelText: "Password",
                     hint: Text("****"),
                     labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
@@ -107,10 +109,15 @@ class LogInPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
                     ),
+                    errorStyle: TextStyle(
+                      fontSize: 12, // custom error text size
+                      height: 0, // keeps height consistent
+                    ),
                   ),
                   keyboardType: TextInputType.text,
-                  validator: (value) =>
-                      value == null || value.isEmpty ? "Enter Password" : null,
+                  validator: (value) => value == null || value.isEmpty
+                      ? "Password is required"
+                      : null,
                 ),
               ),
               SizedBox(height: 20),
