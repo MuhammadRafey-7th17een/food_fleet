@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_fleet/pages/log_in_page.dart';
 
 class StartSplashScreen extends StatelessWidget {
@@ -6,6 +7,16 @@ class StartSplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // gpt start
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+    );
+    //gpt end
+
     return Scaffold(
       body: Container(
         width: double.infinity,
