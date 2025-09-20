@@ -15,7 +15,10 @@ class SignUpPage extends StatelessWidget {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 13, 10, 29), Color.fromARGB(255, 34, 27, 75)],
+              colors: [
+                Color.fromARGB(255, 13, 10, 29),
+                Color.fromARGB(255, 34, 27, 75),
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -31,26 +34,23 @@ class SignUpPage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 34, 27, 75), Color.fromARGB(255, 41, 33, 96)],
+            colors: [
+              Color.fromARGB(255, 34, 27, 75),
+              Color.fromARGB(255, 41, 33, 96),
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-       child: Center(
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              customButton("User Sign Up", () {
-                
-              }),
+              customButton("User Sign Up", () {}),
               const SizedBox(height: 20),
-              customButton("Store Sign Up", () {
-                
-              }),
+              customButton("Store Sign Up", () {}),
               const SizedBox(height: 20),
-              customButton("Rider Sign Up", () {
-                
-              }),
+              customButton("Rider Sign Up", () {}),
               const SizedBox(height: 50),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -73,7 +73,6 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  
   Widget customButton(String text, VoidCallback onTap) {
     return SizedBox(
       width: 220,
@@ -82,9 +81,7 @@ class SignUpPage extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromARGB(255, 60, 19, 69),
           foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         onPressed: onTap,
         child: Text(
