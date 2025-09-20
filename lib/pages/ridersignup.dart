@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 class Ridersignup extends StatefulWidget {
   const Ridersignup({super.key});
 
@@ -26,7 +26,30 @@ class _RidersignupState extends State<Ridersignup> {
 
   @override
   Widget build(BuildContext context) {
+      final _formKey = GlobalKey<FormState>();
+      // gpt start
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+    );
+    //gpt end
     return Scaffold(
+      
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 180,
+        backgroundColor: Colors.transparent,
+        title: Image.asset(
+          'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
+          fit: BoxFit.contain,
+          width: 170,
+          height: 170,
+        ),
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -110,35 +133,7 @@ class _RidersignupState extends State<Ridersignup> {
                   ),
                   const SizedBox(height: 15),
 
-                  // Location
-                  SizedBox( width: 290,
-                  height: 40,
-
-
-                    child: TextFormField(
-                      controller: locationController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Location",
-                        hint: Text("A Town, Street X"),
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      validator: (value) => value == null || value.isEmpty
-                          ? "Enter location"
-                          : null,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-
+                 
                   // Phone Number
                   SizedBox(
                      width: 290,

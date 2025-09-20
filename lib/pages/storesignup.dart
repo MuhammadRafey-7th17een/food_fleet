@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 class Storesignup extends StatefulWidget {
   const Storesignup({super.key});
 
@@ -8,6 +8,10 @@ class Storesignup extends StatefulWidget {
 }
 
 class _StoresignupState extends State<Storesignup> {
+
+  
+
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
@@ -26,7 +30,29 @@ class _StoresignupState extends State<Storesignup> {
 
   @override
   Widget build(BuildContext context) {
+     final _formKey = GlobalKey<FormState>();
+      // gpt start
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+    );
+    //gpt end
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 180,
+        backgroundColor: Colors.transparent,
+        title: Image.asset(
+          'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
+          fit: BoxFit.contain,
+          width: 170,
+          height: 170,
+        ),
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
