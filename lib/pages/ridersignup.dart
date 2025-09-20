@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LogInPage extends StatelessWidget {
-  const LogInPage({super.key});
+class Ridersignup extends StatelessWidget {
+  const Ridersignup({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
       body: Container(
+        
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
