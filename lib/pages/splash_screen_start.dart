@@ -23,10 +23,12 @@ class StartSplashScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Material(
+                  color: Colors.transparent,
                   child: InkWell(
-                    child: Text(
-                      "Test Next Screen Button",
-                      style: TextStyle(fontSize: 28),
+                    child: Image.asset(
+                      'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
+                      width: 160,
+                      height: 160,
                     ),
                     onTap: () {
                       Navigator.pushReplacement(
