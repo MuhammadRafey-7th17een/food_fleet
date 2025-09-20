@@ -77,7 +77,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Navigate to store signup page
+                    
                   },
                   child: const Text(
                     "Store Sign Up",
