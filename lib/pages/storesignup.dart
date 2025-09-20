@@ -79,7 +79,7 @@ class _StoresignupState extends State<Storesignup> {
                       controller: emailController,
                       style: const TextStyle(color: Color(0xFFFFD0EC)),
                       decoration: InputDecoration(
-                        labelText: "Email",
+                        labelText: "Emaill",
                         hint: Text("abc@gmail.com"),
                         labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                         filled: true,
