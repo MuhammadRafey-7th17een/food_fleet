@@ -11,11 +11,15 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     return const MaterialApp(home:SignUpPage());
 
   
 
+=======
+    return const MaterialApp(home:Storesignup());
+>>>>>>> Stashed changes
 =======
     return const MaterialApp(home:Storesignup());
 >>>>>>> Stashed changes
