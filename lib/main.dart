@@ -12,6 +12,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: LogInPage());
+    return const MaterialApp(home: Storesignup());
   }
 }

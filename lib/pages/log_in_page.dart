@@ -59,6 +59,7 @@ class LogInPage extends StatelessWidget {
                 style: const TextStyle(color: Color(0xFFFFD0EC)),
                 decoration: InputDecoration(
                   labelText: "Email",
+                  hint: Text("abc@gmail.com"),
                   labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                   filled: true,
                   fillColor: const Color(0xFF8576FF),

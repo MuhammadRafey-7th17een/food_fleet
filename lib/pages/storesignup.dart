@@ -50,6 +50,7 @@ class _StoresignupState extends State<Storesignup> {
                     style: const TextStyle(color: Color(0xFFFFD0EC)),
                     decoration: InputDecoration(
                       labelText: "Email",
+                      hint: Text("abc@gmail.com"),
                       labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                       filled: true,
                       fillColor: const Color(0xFF8576FF),
@@ -71,8 +72,11 @@ class _StoresignupState extends State<Storesignup> {
                   TextFormField(
                     controller: passwordController,
                     style: const TextStyle(color: Color(0xFFFFD0EC)),
+
                     decoration: InputDecoration(
                       labelText: "Password",
+                      hintText: "*****",
+
                       labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                       filled: true,
                       fillColor: const Color(0xFF8576FF),
@@ -103,6 +107,7 @@ class _StoresignupState extends State<Storesignup> {
                     style: const TextStyle(color: Color(0xFFFFD0EC)),
                     decoration: InputDecoration(
                       labelText: "Location",
+                      hint: Text("A Town, Street X"),
                       labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                       filled: true,
                       fillColor: const Color(0xFF8576FF),
@@ -114,8 +119,9 @@ class _StoresignupState extends State<Storesignup> {
                         borderSide: BorderSide.none,
                       ),
                     ),
-                    validator: (value) =>
-                        value == null || value.isEmpty ? "Enter location" : null,
+                    validator: (value) => value == null || value.isEmpty
+                        ? "Enter location"
+                        : null,
                   ),
                   const SizedBox(height: 15),
 
@@ -125,6 +131,7 @@ class _StoresignupState extends State<Storesignup> {
                     style: const TextStyle(color: Color(0xFFFFD0EC)),
                     decoration: InputDecoration(
                       labelText: "Phone Number",
+                      hint: Text("+92 330-111-111"),
                       labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                       filled: true,
                       fillColor: const Color(0xFF8576FF),
@@ -145,8 +152,13 @@ class _StoresignupState extends State<Storesignup> {
                   // Centered Sign Up button
                   Center(
                     child: SizedBox(
+<<<<<<< HEAD
                       width: 290,
   height: 40,
+=======
+                      width:
+                          MediaQuery.of(context).size.width * 0.5, // 50% width
+>>>>>>> debd39b116a732ad48d47961d30bee60796ccf87
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -158,7 +170,9 @@ class _StoresignupState extends State<Storesignup> {
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 50),
                           backgroundColor: const Color(0xFF2C2C2C), // button bg
-                          foregroundColor: const Color(0xFFFFD0EC), // text color
+                          foregroundColor: const Color(
+                            0xFFFFD0EC,
+                          ), // text color
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
