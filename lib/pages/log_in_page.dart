@@ -22,6 +22,7 @@ class LogInPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        centerTitle: true,
         toolbarHeight: 180,
         backgroundColor: Colors.transparent,
         title: Image.asset(
@@ -42,41 +43,102 @@ class LogInPage extends StatelessWidget {
             stops: [0.05, 0.37],
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 290,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Color(0xFF8576FF),
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                controller: emailController,
-                style: const TextStyle(color: Color(0xFFFFD0EC)),
-                decoration: InputDecoration(
-                  labelText: "Email",
-                  hint: Text("abc@gmail.com"),
-                  labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                  filled: true,
-                  fillColor: const Color(0xFF8576FF),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 290,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Color(0xFF8576FF),
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+                child: TextFormField(
+                  controller: emailController,
+                  style: const TextStyle(color: Color(0xFFFFD0EC)),
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                    filled: true,
+                    fillColor: const Color(0xFF8576FF),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) =>
+                      value == null || value.isEmpty ? "Enter email" : null,
+                ),
+              ),
+
+              SizedBox(height: 20),
+              Container(
+                width: 290,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Color(0xFF8576FF),
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+                child: TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  style: const TextStyle(color: Color(0xFFFFD0EC)),
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    hint: Text("****"),
+                    labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                    filled: true,
+                    fillColor: const Color(0xFF8576FF),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  keyboardType: TextInputType.text,
+                  validator: (value) =>
+                      value == null || value.isEmpty ? "Enter Password" : null,
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: 107,
+                height: 32,
+                decoration: BoxDecoration(
+                  color: Color(0xFF2C2C2C),
+                  border: Border.all(color: Color(0xFF8576FF)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    child: Center(
+                      child: Text(
+                        "Log In",
+                        style: TextStyle(color: Color(0xFFFFD0EC)),
+                      ),
+                    ),
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {}
+                    },
                   ),
                 ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) =>
-                    value == null || value.isEmpty ? "Enter email" : null,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
