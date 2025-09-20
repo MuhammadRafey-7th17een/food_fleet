@@ -36,60 +36,101 @@ class SignUpPage extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-       child: Center(
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              customButton("User Sign Up", () {
-                
-              }),
-              const SizedBox(height: 20),
-              customButton("Store Sign Up", () {
-                
-              }),
-              const SizedBox(height: 20),
-              customButton("Rider Sign Up", () {
-                
-              }),
-              const SizedBox(height: 50),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size(200, 45),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              // User Sign Up
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: 220,
+                height: 45,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 120, 11, 139),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    
+                  },
+                  child: const Text(
+                    "User Sign Up",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ),
-                onPressed: () {
-                  // TODO: Navigate to login page
-                },
-                child: const Text("LOGIN"),
+              ),
+
+              // Store Sign Up
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: 220,
+                height: 45,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 120, 11, 139),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    // TODO: Navigate to store signup page
+                  },
+                  child: const Text(
+                    "Store Sign Up",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+
+              // Rider Sign Up
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: 220,
+                height: 45,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 120, 11, 139),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    // TODO: Navigate to rider signup page
+                  },
+                  child: const Text(
+                    "Rider Sign Up",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+
+              // Login Button
+              Container(
+                width: 220,
+                height: 45,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    // TODO: Navigate to login page
+                  },
+                  child: const Text(
+                    "LOGIN",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                ),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  
-  Widget customButton(String text, VoidCallback onTap) {
-    return SizedBox(
-      width: 220,
-      height: 45,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 60, 19, 69),
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        onPressed: onTap,
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
     );
