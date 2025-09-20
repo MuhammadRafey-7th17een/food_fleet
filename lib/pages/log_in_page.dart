@@ -22,6 +22,7 @@ class LogInPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        centerTitle: true,
         toolbarHeight: 180,
         backgroundColor: Colors.transparent,
         title: Image.asset(
