@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_fleet/pages/splash_screen_start.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +10,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Column(children: [Text("Hello World"), Text("Taha")]),
-        ),
-      ),
-    );
+    return const MaterialApp(home: StartSplashScreen());
   }
 }
