@@ -47,9 +47,33 @@ class LogInPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 287,
-              height: 37,
-              decoration: BoxDecoration(color: Color(0xFF8576FF)),
+              width: 290,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Color(0xFF8576FF),
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                controller: emailController,
+                style: const TextStyle(color: Color(0xFFFFD0EC)),
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                  filled: true,
+                  fillColor: const Color(0xFF8576FF),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) =>
+                    value == null || value.isEmpty ? "Enter email" : null,
+              ),
             ),
           ],
         ),
