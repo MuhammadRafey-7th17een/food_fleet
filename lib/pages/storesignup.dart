@@ -45,120 +45,135 @@ class _StoresignupState extends State<Storesignup> {
               child: Column(
                 children: [
                   // Email
-                  TextFormField(
-                    controller: emailController,
-                    style: const TextStyle(color: Color(0xFFFFD0EC)),
-                    decoration: InputDecoration(
-                      labelText: "Email",
-                      hint: Text("abc@gmail.com"),
-                      labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                      filled: true,
-                      fillColor: const Color(0xFF8576FF),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  SizedBox(
+ width: 290,
+  height: 40,
+
+                    child: TextFormField(
+                      controller: emailController,
+                      style: const TextStyle(color: Color(0xFFFFD0EC)),
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        hint: Text("abc@gmail.com"),
+                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                        filled: true,
+                        fillColor: const Color(0xFF8576FF),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) =>
+                          value == null || value.isEmpty ? "Enter email" : null,
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) =>
-                        value == null || value.isEmpty ? "Enter email" : null,
                   ),
                   const SizedBox(height: 15),
 
                   // Password
-                  TextFormField(
-                    controller: passwordController,
-                    style: const TextStyle(color: Color(0xFFFFD0EC)),
-
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      hintText: "*****",
-
-                      labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                      filled: true,
-                      fillColor: const Color(0xFF8576FF),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  SizedBox(
+                     width: 290,
+                     height: 40,
+                    child: TextFormField(
+                      controller: passwordController,
+                      style: const TextStyle(color: Color(0xFFFFD0EC)),
+                    
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        hintText: "*****",
+                    
+                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                        filled: true,
+                        fillColor: const Color(0xFF8576FF),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Enter password";
+                        }
+                        if (value.length < 6) {
+                          return "Password must be at least 6 characters";
+                        }
+                        return null;
+                      },
                     ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Enter password";
-                      }
-                      if (value.length < 6) {
-                        return "Password must be at least 6 characters";
-                      }
-                      return null;
-                    },
                   ),
                   const SizedBox(height: 15),
 
                   // Location
-                  TextFormField(
-                    controller: locationController,
-                    style: const TextStyle(color: Color(0xFFFFD0EC)),
-                    decoration: InputDecoration(
-                      labelText: "Location",
-                      hint: Text("A Town, Street X"),
-                      labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                      filled: true,
-                      fillColor: const Color(0xFF8576FF),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  SizedBox( width: 290,
+                  height: 40,
+
+
+                    child: TextFormField(
+                      controller: locationController,
+                      style: const TextStyle(color: Color(0xFFFFD0EC)),
+                      decoration: InputDecoration(
+                        labelText: "Location",
+                        hint: Text("A Town, Street X"),
+                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                        filled: true,
+                        fillColor: const Color(0xFF8576FF),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
+                      validator: (value) => value == null || value.isEmpty
+                          ? "Enter location"
+                          : null,
                     ),
-                    validator: (value) => value == null || value.isEmpty
-                        ? "Enter location"
-                        : null,
                   ),
                   const SizedBox(height: 15),
 
                   // Phone Number
-                  TextFormField(
-                    controller: numberController,
-                    style: const TextStyle(color: Color(0xFFFFD0EC)),
-                    decoration: InputDecoration(
-                      labelText: "Phone Number",
-                      hint: Text("+92 330-111-111"),
-                      labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                      filled: true,
-                      fillColor: const Color(0xFF8576FF),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  SizedBox(
+                     width: 290,
+                     height: 40,
+
+
+                    child: TextFormField(
+                      controller: numberController,
+                      style: const TextStyle(color: Color(0xFFFFD0EC)),
+                      decoration: InputDecoration(
+                        labelText: "Phone Number",
+                        hint: Text("+92 330-111-111"),
+                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+                        filled: true,
+                        fillColor: const Color(0xFF8576FF),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
+                      keyboardType: TextInputType.phone,
+                      validator: (value) =>
+                          value == null || value.isEmpty ? "Enter number" : null,
                     ),
-                    keyboardType: TextInputType.phone,
-                    validator: (value) =>
-                        value == null || value.isEmpty ? "Enter number" : null,
                   ),
                   const SizedBox(height: 25),
 
                   // Centered Sign Up button
                   Center(
                     child: SizedBox(
-<<<<<<< HEAD
-                      width: 290,
-  height: 40,
-=======
-                      width:
-                          MediaQuery.of(context).size.width * 0.5, // 50% width
->>>>>>> debd39b116a732ad48d47961d30bee60796ccf87
+                      width: 150,
+                       height: 40,
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
