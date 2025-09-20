@@ -46,7 +46,6 @@ class SignUpPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-<<<<<<< HEAD
               // User Sign Up
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
@@ -108,7 +107,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Navigate to rider signup page
+                   
                   },
                   child: const Text(
                     
@@ -138,21 +137,6 @@ class SignUpPage extends StatelessWidget {
                   child: const Text(
                     "LOGIN",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-=======
-              customButton("User Sign Up", () {}),
-              const SizedBox(height: 20),
-              customButton("Store Sign Up", () {}),
-              const SizedBox(height: 20),
-              customButton("Rider Sign Up", () {}),
-              const SizedBox(height: 50),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size(200, 45),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
->>>>>>> main
                   ),
                 ),
               ),
@@ -162,27 +146,4 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-
-  Widget customButton(String text, VoidCallback onTap) {
-    return SizedBox(
-      width: 220,
-      height: 45,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 60, 19, 69),
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        onPressed: onTap,
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-        ),
-      ),
-    );
-  }
-}
->>>>>>> main
