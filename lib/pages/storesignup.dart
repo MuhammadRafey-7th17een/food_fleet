@@ -145,7 +145,8 @@ class _StoresignupState extends State<Storesignup> {
                   // Centered Sign Up button
                   Center(
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5, // 50% width
+                      width: 290,
+  height: 40,
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
