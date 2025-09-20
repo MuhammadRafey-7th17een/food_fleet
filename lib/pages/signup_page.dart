@@ -47,6 +47,7 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -69,6 +70,7 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -90,7 +92,9 @@ class SignUpPage extends StatelessWidget {
                 width: 220,
                 height: 45,
                 child: ElevatedButton(
+                  
                   style: ElevatedButton.styleFrom(
+                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -100,6 +104,7 @@ class SignUpPage extends StatelessWidget {
                     // TODO: Navigate to rider signup page
                   },
                   child: const Text(
+                    
                     "Rider Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
