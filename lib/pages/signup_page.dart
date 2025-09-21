@@ -46,7 +46,6 @@ class SignUpPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-<<<<<<< HEAD
               // User Sign Up
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
@@ -54,15 +53,13 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                     foregroundColor: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: const Text(
                     "User Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -77,15 +74,13 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                     foregroundColor: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: const Text(
                     "Store Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -99,9 +94,8 @@ class SignUpPage extends StatelessWidget {
                 width: 220,
                 height: 45,
                 child: ElevatedButton(
-                  
                   style: ElevatedButton.styleFrom(
-                     foregroundColor: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -111,7 +105,6 @@ class SignUpPage extends StatelessWidget {
                     // TODO: Navigate to rider signup page
                   },
                   child: const Text(
-                    
                     "Rider Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
@@ -121,7 +114,7 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // Login Button
-              Container(
+              SizedBox(
                 width: 220,
                 height: 45,
                 child: ElevatedButton(
@@ -138,21 +131,6 @@ class SignUpPage extends StatelessWidget {
                   child: const Text(
                     "LOGIN",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-=======
-              customButton("User Sign Up", () {}),
-              const SizedBox(height: 20),
-              customButton("Store Sign Up", () {}),
-              const SizedBox(height: 20),
-              customButton("Rider Sign Up", () {}),
-              const SizedBox(height: 50),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size(200, 45),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
->>>>>>> main
                   ),
                 ),
               ),
@@ -162,27 +140,4 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-
-  Widget customButton(String text, VoidCallback onTap) {
-    return SizedBox(
-      width: 220,
-      height: 45,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 60, 19, 69),
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        onPressed: onTap,
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-        ),
-      ),
-    );
-  }
-}
->>>>>>> main
