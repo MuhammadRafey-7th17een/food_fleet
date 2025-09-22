@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_fleet/pages/setting_page.dart';
+import 'package:food_fleet/pages/signup_page.dart';
+import 'package:food_fleet/pages/user_cart.dart';
+import 'package:food_fleet/pages/user_history.dart';
 class Userhomepage extends StatefulWidget {
   const Userhomepage({super.key});
 
@@ -76,7 +80,14 @@ class _UserhomepageState extends State<Userhomepage> {
                 leading: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () { 
+                        Navigator.push(
+                          context,
+      MaterialPageRoute(builder: (context) => const SignUpPage()
+      )
+      );
+   
+                    },
                     icon: Icon(Icons.logout),
                     iconSize: 30,
                     splashColor: Color(0xFFE3F6FF),
@@ -90,6 +101,11 @@ class _UserhomepageState extends State<Userhomepage> {
                   color: Colors.transparent,
                   child: IconButton(
                     onPressed: () {
+                        Navigator.push(
+                          context,
+      MaterialPageRoute(builder: (context) => const SettingsPage()
+      )
+      );
                     
                     },
                     icon: Icon(Icons.settings),
@@ -109,7 +125,11 @@ class _UserhomepageState extends State<Userhomepage> {
                   color: Colors.transparent,
                   child: IconButton(
                     onPressed: () {
-                      
+                        Navigator.push(
+                          context,
+      MaterialPageRoute(builder: (context) => const UserCart()
+      )
+      );
                       
                     },
                     icon: Icon(Icons.shopping_cart),
@@ -128,7 +148,11 @@ class _UserhomepageState extends State<Userhomepage> {
                 title: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () {
+                    onPressed: () {   Navigator.push(
+                          context,
+      MaterialPageRoute(builder: (context) => const UserHistory()
+      )
+      );
                       
                       
                     },
@@ -144,7 +168,7 @@ class _UserhomepageState extends State<Userhomepage> {
                 ),
               ),
                
-      
+      SizedBox(height: 50),
        Image.asset(
         'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
         width: 100,
