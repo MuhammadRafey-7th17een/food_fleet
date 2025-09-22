@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_fleet/pages/signup_page.dart';
+import 'package:food_fleet/pages/store_current_items.dart';
+import 'package:food_fleet/pages/store_history.dart';
 
 import 'package:food_fleet/pages/store_setting.dart';
 
@@ -39,7 +42,14 @@ class StoreHomePage extends StatelessWidget {
                 leading: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpPage(),
+                        ),
+                      );
+                    },
                     icon: Icon(Icons.logout),
                     iconSize: 30,
                     splashColor: Color(0xFFE3F6FF),
@@ -80,7 +90,7 @@ class StoreHomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StoreSetting(),
+                          builder: (context) => const StoreHistory(),
                         ),
                       );
                     },
@@ -104,7 +114,7 @@ class StoreHomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StoreSetting(),
+                          builder: (context) => const StoreCurrentItems(),
                         ),
                       );
                     },
