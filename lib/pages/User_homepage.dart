@@ -171,8 +171,7 @@ class _UserhomepageState extends State<Userhomepage> {
       SizedBox(height: 50),
        Image.asset(
         'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
-        width: 100,
-        height: 100,
+        
         fit: BoxFit.contain,
       ),
    
