@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 class Ridersignup extends StatefulWidget {
   const Ridersignup({super.key});
 
@@ -26,8 +27,8 @@ class _RidersignupState extends State<Ridersignup> {
 
   @override
   Widget build(BuildContext context) {
-      final _formKey = GlobalKey<FormState>();
-      // gpt start
+    final formKey = GlobalKey<FormState>();
+    // gpt start
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -37,7 +38,6 @@ class _RidersignupState extends State<Ridersignup> {
     );
     //gpt end
     return Scaffold(
-      
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
@@ -64,13 +64,13 @@ class _RidersignupState extends State<Ridersignup> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 children: [
                   // Email
                   SizedBox(
- width: 290,
-  height: 40,
+                    width: 290,
+                    height: 40,
 
                     child: TextFormField(
                       controller: emailController,
@@ -98,16 +98,16 @@ class _RidersignupState extends State<Ridersignup> {
 
                   // Password
                   SizedBox(
-                     width: 290,
-                     height: 40,
+                    width: 290,
+                    height: 40,
                     child: TextFormField(
                       controller: passwordController,
                       style: const TextStyle(color: Color(0xFFFFD0EC)),
-                    
+
                       decoration: InputDecoration(
                         labelText: "Password",
                         hintText: "*****",
-                    
+
                         labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                         filled: true,
                         fillColor: const Color(0xFF8576FF),
@@ -133,12 +133,10 @@ class _RidersignupState extends State<Ridersignup> {
                   ),
                   const SizedBox(height: 15),
 
-                 
                   // Phone Number
                   SizedBox(
-                     width: 290,
-                     height: 40,
-
+                    width: 290,
+                    height: 40,
 
                     child: TextFormField(
                       controller: numberController,
@@ -158,8 +156,9 @@ class _RidersignupState extends State<Ridersignup> {
                         ),
                       ),
                       keyboardType: TextInputType.phone,
-                      validator: (value) =>
-                          value == null || value.isEmpty ? "Enter number" : null,
+                      validator: (value) => value == null || value.isEmpty
+                          ? "Enter number"
+                          : null,
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -168,10 +167,10 @@ class _RidersignupState extends State<Ridersignup> {
                   Center(
                     child: SizedBox(
                       width: 150,
-                       height: 40,
+                      height: 40,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Form submitted")),
                             );

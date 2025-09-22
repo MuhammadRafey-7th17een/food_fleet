@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -107,7 +108,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Navigate to rider signup page
+                   
                   },
                   child: const Text(
                     
@@ -132,7 +133,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Navigate to login page
+                 
                   },
                   child: const Text(
                     "LOGIN",

@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-class Storesignup extends StatefulWidget {
-  const Storesignup({super.key});
+class UserSignup extends StatefulWidget {
+  const UserSignup({super.key});
 
   @override
-  State<Storesignup> createState() => _StoresignupState();
+  State<UserSignup> createState() => _UserSignupState();
 }
 
-class _StoresignupState extends State<Storesignup> {
+
+class _UserSignupState extends State<UserSignup> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
+
   final TextEditingController numberController = TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    locationController.dispose();
     numberController.dispose();
     super.dispose();
   }
@@ -129,35 +128,6 @@ class _StoresignupState extends State<Storesignup> {
                         }
                         return null;
                       },
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-
-                  // Location
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-
-                    child: TextFormField(
-                      controller: locationController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Location",
-                        hint: Text("A Town, Street X"),
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      validator: (value) => value == null || value.isEmpty
-                          ? "Enter location"
-                          : null,
                     ),
                   ),
                   const SizedBox(height: 15),

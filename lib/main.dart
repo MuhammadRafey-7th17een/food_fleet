@@ -3,7 +3,8 @@ import 'package:food_fleet/pages/Userhomepage.dart';
 import 'package:food_fleet/pages/log_in_page.dart';
 import 'package:food_fleet/pages/ridersignup.dart';
 import 'package:food_fleet/pages/signup_page.dart';
-import 'package:food_fleet/pages/storesignup.dart';
+import 'package:food_fleet/pages/user_signup.dart';
+
 void main() {
   runApp(const MainApp());
 }
