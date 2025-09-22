@@ -121,7 +121,7 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // Login Button
-              Container(
+              SizedBox(
                 width: 220,
                 height: 45,
                 child: ElevatedButton(
