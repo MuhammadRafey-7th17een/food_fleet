@@ -53,15 +53,13 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                     foregroundColor: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: const Text(
                     "User Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -76,15 +74,13 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                     foregroundColor: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: const Text(
                     "Store Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -98,9 +94,8 @@ class SignUpPage extends StatelessWidget {
                 width: 220,
                 height: 45,
                 child: ElevatedButton(
-                  
                   style: ElevatedButton.styleFrom(
-                     foregroundColor: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 120, 11, 139),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -110,7 +105,6 @@ class SignUpPage extends StatelessWidget {
                    
                   },
                   child: const Text(
-                    
                     "Rider Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
@@ -120,7 +114,7 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // Login Button
-              Container(
+              SizedBox(
                 width: 220,
                 height: 45,
                 child: ElevatedButton(

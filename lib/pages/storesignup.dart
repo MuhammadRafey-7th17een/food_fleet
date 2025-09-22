@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 class Storesignup extends StatefulWidget {
   const Storesignup({super.key});
 
@@ -8,10 +9,6 @@ class Storesignup extends StatefulWidget {
 }
 
 class _StoresignupState extends State<Storesignup> {
-
-  
-
-
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
@@ -30,8 +27,8 @@ class _StoresignupState extends State<Storesignup> {
 
   @override
   Widget build(BuildContext context) {
-     final _formKey = GlobalKey<FormState>();
-      // gpt start
+    final formKey = GlobalKey<FormState>();
+    // gpt start
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -67,13 +64,13 @@ class _StoresignupState extends State<Storesignup> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 children: [
                   // Email
                   SizedBox(
- width: 290,
-  height: 40,
+                    width: 290,
+                    height: 40,
 
                     child: TextFormField(
                       controller: emailController,
@@ -101,16 +98,16 @@ class _StoresignupState extends State<Storesignup> {
 
                   // Password
                   SizedBox(
-                     width: 290,
-                     height: 40,
+                    width: 290,
+                    height: 40,
                     child: TextFormField(
                       controller: passwordController,
                       style: const TextStyle(color: Color(0xFFFFD0EC)),
-                    
+
                       decoration: InputDecoration(
                         labelText: "Password",
                         hintText: "*****",
-                    
+
                         labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
                         filled: true,
                         fillColor: const Color(0xFF8576FF),
@@ -137,9 +134,9 @@ class _StoresignupState extends State<Storesignup> {
                   const SizedBox(height: 15),
 
                   // Location
-                  SizedBox( width: 290,
-                  height: 40,
-
+                  SizedBox(
+                    width: 290,
+                    height: 40,
 
                     child: TextFormField(
                       controller: locationController,
@@ -167,9 +164,8 @@ class _StoresignupState extends State<Storesignup> {
 
                   // Phone Number
                   SizedBox(
-                     width: 290,
-                     height: 40,
-
+                    width: 290,
+                    height: 40,
 
                     child: TextFormField(
                       controller: numberController,
@@ -189,8 +185,9 @@ class _StoresignupState extends State<Storesignup> {
                         ),
                       ),
                       keyboardType: TextInputType.phone,
-                      validator: (value) =>
-                          value == null || value.isEmpty ? "Enter number" : null,
+                      validator: (value) => value == null || value.isEmpty
+                          ? "Enter number"
+                          : null,
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -199,10 +196,10 @@ class _StoresignupState extends State<Storesignup> {
                   Center(
                     child: SizedBox(
                       width: 150,
-                       height: 40,
+                      height: 40,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Form submitted")),
                             );

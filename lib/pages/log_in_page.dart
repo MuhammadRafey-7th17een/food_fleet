@@ -6,7 +6,7 @@ class LogInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
@@ -44,7 +44,7 @@ class LogInPage extends StatelessWidget {
           ),
         ),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,7 +132,7 @@ class LogInPage extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (formKey.currentState!.validate()) {}
                     },
                   ),
                 ),
