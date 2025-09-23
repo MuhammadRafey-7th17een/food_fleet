@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "214017806001",
+    "project_id": "food-fleetdbs",
+    "storage_bucket": "food-fleetdbs.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214017806001:android:dba06cbec67732c09fdc90",
+        "android_client_info": {
+          "package_name": "com.example.food_fleet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO-aF8pXCcN_lTLKtmRzaHoISTiQGSGRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
