@@ -64,7 +64,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const UserSignup()),
                     );
@@ -90,7 +90,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const Storesignup()),
                     );
@@ -116,7 +116,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const Ridersignup()),
                     );
