@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_fleet/pages/log_in_page.dart';
+import 'package:food_fleet/pages/ridersignup.dart';
+import 'package:food_fleet/pages/storesignup.dart';
+import 'package:food_fleet/pages/user_signup.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -59,7 +63,12 @@ class SignUpPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const UserSignup()),
+                    );
+                  },
                   child: const Text(
                     "User Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -80,7 +89,12 @@ class SignUpPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const Storesignup()),
+                    );
+                  },
                   child: const Text(
                     "Store Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -101,7 +115,12 @@ class SignUpPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const Ridersignup()),
+                    );
+                  },
                   child: const Text(
                     "Rider Sign Up",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -123,7 +142,12 @@ class SignUpPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                   Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LogInPage()),
+                    );
+                  },
                   child: const Text(
                     "LOGIN",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
