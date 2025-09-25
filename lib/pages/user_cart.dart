@@ -10,6 +10,8 @@ class UserCart extends StatefulWidget {
 }
 
 class _UserCartState extends State<UserCart> {
+  String price = '';
+  double showPrice = 0.0;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -36,34 +38,64 @@ class _UserCartState extends State<UserCart> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () async {
+              onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Order Confirmed!")),
                 );
               },
-              child: const Text("Confirm Order"),
+              child: Text("Confirm Order"),
             ),
           ),
-          StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('userCartTempCollection')
-                .snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return const Center(child: Text("Something went wrong"));
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              final orderDetials = snapshot.data!.docs;
-              if (orderDetials.isEmpty) {
-                return const Center(child: Text("No orders found"));
-              }
-              return ListView.builder(
-                itemCount: orderDetials.length,
-                itemBuilder: (BuildContext context, index) {},
-              );
-            },
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('userCartTempCollection')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(child: Text("Something went wrong"));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                final orderDetials = snapshot.data!.docs;
+                if (orderDetials.isEmpty) {
+                  return const Center(child: Text("No orders found"));
+                }
+                for (var doc in orderDetials) {
+                  final data = doc.data() as Map<String, dynamic>;
+                  price = data['Price'].toString();
+                  showPrice = showPrice + double.parse(price);
+                }
+
+                return Column(
+                  children: [
+                    Text("Total: $showPrice"),
+
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: orderDetials.length,
+                        itemBuilder: (BuildContext context, index) {
+                          final orderDoc = orderDetials[index];
+                          final orderData =
+                              orderDoc.data() as Map<String, dynamic>;
+
+                          return ListTile(
+                            leading: CircleAvatar(
+                              radius: 30,
+                              backgroundImage: NetworkImage(orderData['URL']),
+                            ),
+                            title: Text(orderData['ItemName'].toString()),
+                            subtitle: Text(orderData['hotel_id'].toString()),
+                            trailing: Text(orderData['Price'].toString()),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ],
       ),

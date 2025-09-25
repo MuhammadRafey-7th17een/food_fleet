@@ -14,14 +14,6 @@ class Userhomepage extends StatefulWidget {
   State<Userhomepage> createState() => _UserhomepageState();
 }
 
-Future<String> getHotelName(String hotelId) async {
-  final doc = await FirebaseFirestore.instance
-      .collection('Hotels')
-      .doc(hotelId)
-      .get();
-  return (doc.data()?['name'] ?? 'Unknown Hotel');
-}
-
 class _UserhomepageState extends State<Userhomepage> {
   final _formKey = GlobalKey<FormState>();
 
