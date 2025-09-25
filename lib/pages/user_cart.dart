@@ -1,9 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class UserCart extends StatelessWidget {
+class UserCart extends StatefulWidget {
   const UserCart({super.key});
 
+  @override
+  State<UserCart> createState() => _UserCartState();
+}
+
+class _UserCartState extends State<UserCart> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -30,13 +36,34 @@ class UserCart extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Order Confirmed!")),
                 );
               },
-              child: const Text("Confirm Order"), 
+              child: const Text("Confirm Order"),
             ),
+          ),
+          StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('userCartTempCollection')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Center(child: Text("Something went wrong"));
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              final orderDetials = snapshot.data!.docs;
+              if (orderDetials.isEmpty) {
+                return const Center(child: Text("No orders found"));
+              }
+              return ListView.builder(
+                itemCount: orderDetials.length,
+                itemBuilder: (BuildContext context, index) {},
+              );
+            },
           ),
         ],
       ),

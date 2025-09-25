@@ -142,9 +142,7 @@ class _UserhomepageState extends State<Userhomepage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const UserCart(),
-                        ),
+                        MaterialPageRoute(builder: (context) => UserCart()),
                       );
                     },
                     icon: Icon(Icons.shopping_cart),
