@@ -4,6 +4,8 @@ import 'package:food_fleet/pages/setting_page.dart';
 import 'package:food_fleet/pages/signup_page.dart';
 import 'package:food_fleet/pages/user_cart.dart';
 import 'package:food_fleet/pages/user_history.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Userhomepage extends StatefulWidget {
   const Userhomepage({super.key});
 
@@ -15,19 +17,19 @@ class _UserhomepageState extends State<Userhomepage> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
-  
+  final collection = FirebaseFirestore.instance.collection('Hotels');
 
   @override
   void dispose() {
     emailController.dispose();
-    
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-      final formKey = GlobalKey<FormState>();
-      // gpt start
+    final formKey = GlobalKey<FormState>();
+    // gpt start
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Color.fromARGB(0, 148, 162, 189),
@@ -37,28 +39,28 @@ class _UserhomepageState extends State<Userhomepage> {
     );
     //gpt end
     return Scaffold(
-  backgroundColor: const Color(0xFF98BCF9),
-  extendBodyBehindAppBar: true,
+      backgroundColor: const Color(0xFF98BCF9),
+      extendBodyBehindAppBar: true,
 
-  appBar: AppBar(
-    centerTitle: true,
-  backgroundColor: const Color(0xFF5677BA),
-  toolbarHeight: 134,
-  title: const Text(""),
-  actions: [
-    Padding(
-      padding: const EdgeInsets.only(right: 12),
-      child: Image.asset(
-        'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
-        width: 100,
-        height: 100,
-        fit: BoxFit.contain,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: const Color(0xFF5677BA),
+        toolbarHeight: 134,
+        title: const Text(""),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Image.asset(
+              'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ],
       ),
-    ),
-  ],
-),
 
-  drawer: Drawer(
+      drawer: Drawer(
         elevation: 20,
         shadowColor: Color(0xFF45FFCA),
         surfaceTintColor: Color(0xFF35A29F),
@@ -80,13 +82,13 @@ class _UserhomepageState extends State<Userhomepage> {
                 leading: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () { 
-                        Navigator.push(
-                          context,
-      MaterialPageRoute(builder: (context) => const SignUpPage()
-      )
-      );
-   
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpPage(),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.logout),
                     iconSize: 30,
@@ -101,12 +103,12 @@ class _UserhomepageState extends State<Userhomepage> {
                   color: Colors.transparent,
                   child: IconButton(
                     onPressed: () {
-                        Navigator.push(
-                          context,
-      MaterialPageRoute(builder: (context) => const SettingsPage()
-      )
-      );
-                    
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsPage(),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.settings),
                     iconSize: 60,
@@ -125,12 +127,12 @@ class _UserhomepageState extends State<Userhomepage> {
                   color: Colors.transparent,
                   child: IconButton(
                     onPressed: () {
-                        Navigator.push(
-                          context,
-      MaterialPageRoute(builder: (context) => const UserCart()
-      )
-      );
-                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UserCart(),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.shopping_cart),
                     iconSize: 60,
@@ -143,18 +145,18 @@ class _UserhomepageState extends State<Userhomepage> {
                   child: Text("Cart", style: TextStyle(fontSize: 20)),
                 ),
               ),
-               SizedBox(height: 10),
+              SizedBox(height: 10),
               ListTile(
                 title: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () {   Navigator.push(
-                          context,
-      MaterialPageRoute(builder: (context) => const UserHistory()
-      )
-      );
-                      
-                      
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UserHistory(),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.history),
                     iconSize: 60,
@@ -167,30 +169,75 @@ class _UserhomepageState extends State<Userhomepage> {
                   child: Text("History", style: TextStyle(fontSize: 20)),
                 ),
               ),
-               
-      SizedBox(height: 50),
-       Image.asset(
-        'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
-        
-        fit: BoxFit.contain,
-      ),
-   
+
+              SizedBox(height: 50),
+              Image.asset(
+                'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
+
+                fit: BoxFit.contain,
+              ),
             ],
           ),
+        ),
+      ),
 
-  ),
-),
+      body: Center(
+        child: StreamBuilder<QuerySnapshot>(
+          stream: collection.snapshots(),
+          builder: (context, hotelsnapshot) {
+            if (hotelsnapshot.hasError) {
+              return const Center(child: Text("Something went wrong"));
+            }
+            if (hotelsnapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-  body: Center(
-    child: Text("Main Content"),
-  ),
-);
+            final hotels = hotelsnapshot.data!.docs;
+            return ListView.builder(
+              itemCount: hotels.length,
+              itemBuilder: (BuildContext context, index) {
+                final hotel = hotels[index];
+                final hotelid = hotel.id;
+                final hotelData = hotel.data() as Map<String, dynamic>;
+                return Column(
+                  children: [
+                    ListTile(title: hotelData['HotelName'] ?? 'No name'),
+                    StreamBuilder<QuerySnapshot>(
+                      stream: collection
+                          .doc(hotelid)
+                          .collection('1subcollection')
+                          .snapshots(),
+
+                      builder: (context, orderSnapshots) {
+                        if (!orderSnapshots.hasData) {
+                          return const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        final orders = orderSnapshots.data!.docs;
+                        return Column(
+                          children: orders.map((orderDocs) {
+                            final orderData =
+                                orderDocs.data as Map<String, dynamic>;
+                            return ListTile(
+                              leading: Image.network(orderData['URL']),
+                              title: orderData['FoodName'],
+                              subtitle: orderData['Description'],
+                              trailing: orderData['Price'],
+                              isThreeLine: true,
+                            );
+                          }).toList(),
+                        );
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
   }
 }
-
-
-
-
-
-   
-
