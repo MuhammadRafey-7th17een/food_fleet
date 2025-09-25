@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/User_homepage.dart';
 import 'package:food_fleet/pages/ridersignup.dart';
 import 'package:food_fleet/pages/setting_page.dart';
+import 'package:food_fleet/pages/signup_page.dart';
 import 'package:food_fleet/pages/splash_screen_start.dart';
 import 'package:food_fleet/pages/user_cart.dart';
 import 'package:food_fleet/pages/user_signup.dart';
@@ -19,6 +20,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home:SettingsPage());
+    return const MaterialApp(home:SignUpPage());
   }
 }
