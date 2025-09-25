@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Storesignup extends StatefulWidget {
   const Storesignup({super.key});
@@ -25,10 +27,38 @@ class _StoresignupState extends State<Storesignup> {
     super.dispose();
   }
 
+  Future<void> _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        final credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+
+        await FirebaseFirestore.instance
+            .collection("stores")
+            .doc(credential.user!.uid)
+            .set({
+          "email": emailController.text.trim(),
+          "phone": numberController.text.trim(),
+          "location": locationController.text.trim(),
+          "createdAt": DateTime.now(),
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Store account created successfully!")),
+        );
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: ${e.message}")),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    // gpt start
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -36,7 +66,7 @@ class _StoresignupState extends State<Storesignup> {
         statusBarBrightness: Brightness.dark,
       ),
     );
-    //gpt end
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -64,153 +94,63 @@ class _StoresignupState extends State<Storesignup> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: [
-                  // Email
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-
-                    child: TextFormField(
-                      controller: emailController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Emaill",
-                        hint: Text("abc@gmail.com"),
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) =>
-                          value == null || value.isEmpty ? "Enter email" : null,
-                    ),
+                  _buildTextField(
+                    controller: emailController,
+                    label: "Email",
+                    hint: "abc@gmail.com",
+                    validator: (value) =>
+                        value == null || value.isEmpty ? "Enter email" : null,
                   ),
                   const SizedBox(height: 15),
 
-                  // Password
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-                    child: TextFormField(
-                      controller: passwordController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        hintText: "*****",
-
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Enter password";
-                        }
-                        if (value.length < 6) {
-                          return "Password must be at least 6 characters";
-                        }
-                        return null;
-                      },
-                    ),
+                  _buildTextField(
+                    controller: passwordController,
+                    label: "Password",
+                    hint: "*****",
+                    obscure: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter password";
+                      }
+                      if (value.length < 6) {
+                        return "Password must be at least 6 characters";
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 15),
 
-                  // Location
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-
-                    child: TextFormField(
-                      controller: locationController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Location",
-                        hint: Text("A Town, Street X"),
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      validator: (value) => value == null || value.isEmpty
-                          ? "Enter location"
-                          : null,
-                    ),
+                  _buildTextField(
+                    controller: locationController,
+                    label: "Location",
+                    hint: "A Town, Street X",
+                    validator: (value) =>
+                        value == null || value.isEmpty ? "Enter location" : null,
                   ),
                   const SizedBox(height: 15),
 
-                  // Phone Number
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-
-                    child: TextFormField(
-                      controller: numberController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Phone Number",
-                        hint: Text("+92 330-111-111"),
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      keyboardType: TextInputType.phone,
-                      validator: (value) => value == null || value.isEmpty
-                          ? "Enter number"
-                          : null,
-                    ),
+                  _buildTextField(
+                    controller: numberController,
+                    label: "Phone Number",
+                    hint: "+92 330-111-111",
+                    validator: (value) =>
+                        value == null || value.isEmpty ? "Enter number" : null,
                   ),
                   const SizedBox(height: 25),
 
-                  // Centered Sign Up button
                   Center(
                     child: SizedBox(
                       width: 150,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Form submitted")),
-                            );
-                          }
-                        },
+                        onPressed: _signUp,
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 50),
-                          backgroundColor: const Color(0xFF2C2C2C), // button bg
-                          foregroundColor: const Color(
-                            0xFFFFD0EC,
-                          ), // text color
+                          backgroundColor: const Color(0xFF2C2C2C),
+                          foregroundColor: const Color(0xFFFFD0EC),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -224,6 +164,39 @@ class _StoresignupState extends State<Storesignup> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required String hint,
+    bool obscure = false,
+    String? Function(String?)? validator,
+  }) {
+    return SizedBox(
+      width: 290,
+      height: 40,
+      child: TextFormField(
+        controller: controller,
+        style: const TextStyle(color: Color(0xFFFFD0EC)),
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
+          filled: true,
+          fillColor: const Color(0xFF8576FF),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+        ),
+        obscureText: obscure,
+        validator: validator,
       ),
     );
   }
