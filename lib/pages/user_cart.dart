@@ -35,7 +35,7 @@ class UserCart extends StatelessWidget {
                   const SnackBar(content: Text("Order Confirmed!")),
                 );
               },
-              child: const Text("Confirm Order"), // ✅ Fixed
+              child: const Text("Confirm Order"), 
             ),
           ),
         ],
