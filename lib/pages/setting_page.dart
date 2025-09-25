@@ -39,7 +39,7 @@ class SettingsPage extends StatelessWidget {
           children: [
           
              Text(
-              "User Name: ${user?.displayName ?? 'Not Set'}",
+              "User ID: ${user?.uid ?? 'Not Set'}",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const Divider(color: Colors.black, thickness: 1),
