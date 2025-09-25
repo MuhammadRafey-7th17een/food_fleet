@@ -219,6 +219,7 @@ class _UserhomepageState extends State<Userhomepage> {
 
                 return ListTile(
                   leading: CircleAvatar(
+                    radius: 30,
                     backgroundImage: NetworkImage(orderData['URL']),
                   ),
                   title: Text(orderData['FoodName'].toString()),
