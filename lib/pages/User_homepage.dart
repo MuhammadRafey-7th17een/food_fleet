@@ -13,11 +13,21 @@ class Userhomepage extends StatefulWidget {
   State<Userhomepage> createState() => _UserhomepageState();
 }
 
+Future<String> getHotelName(String hotelId) async {
+  final doc = await FirebaseFirestore.instance
+      .collection('Hotels')
+      .doc(hotelId)
+      .get();
+  return (doc.data()?['name'] ?? 'Unknown Hotel');
+}
+
 class _UserhomepageState extends State<Userhomepage> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
-  final collection = FirebaseFirestore.instance.collection('Hotels');
+  final collection = FirebaseFirestore.instance.collectionGroup(
+    '1subcollection',
+  );
 
   @override
   void dispose() {
@@ -184,64 +194,47 @@ class _UserhomepageState extends State<Userhomepage> {
       body: Center(
         child: StreamBuilder<QuerySnapshot>(
           stream: collection.snapshots(),
-          builder: (context, hotelsnapshot) {
-            if (hotelsnapshot.hasError) {
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
               return const Center(child: Text("Something went wrong"));
             }
-            if (hotelsnapshot.connectionState == ConnectionState.waiting) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
+            final orderDetails = snapshot.data!.docs;
+            if (orderDetails.isEmpty) {
+              return const Center(child: Text("No orders found"));
+            }
 
-            final hotels = hotelsnapshot.data!.docs;
             return ListView.builder(
-              itemCount: hotels.length,
+              itemCount: orderDetails.length,
               itemBuilder: (BuildContext context, index) {
-                final hotel = hotels[index];
-                final hotelid = hotel.id;
-                final hotelData = hotel.data() as Map<String, dynamic>;
-                return Column(
-                  children: [
-                    ListTile(title: Text(hotelData['HotelName'] ?? 'No name')),
-                    StreamBuilder<QuerySnapshot>(
-                      stream: collection
-                          .doc(hotelid)
-                          .collection('1subcollection')
-                          .snapshots(),
+                final orderDoc = orderDetails[index];
 
-                      builder: (context, orderSnapshots) {
-                        if (!orderSnapshots.hasData) {
-                          return const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        final orders = orderSnapshots.data!.docs;
-                        return ListView.builder(
-                          itemCount: orders.length,
-                          itemBuilder: (BuildContext context, index) {
-                            final orderData =
-                                orders[index].data() as Map<String, dynamic>;
-                            return ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: NetworkImage(orderData['URL']),
-                              ),
-                              title: Text(orderData['FoodName']),
-                              subtitle: Text(orderData['Description']),
-                              trailing:
-                               
-                               Column(children : [Text(orderData['Price'].toString()),
-                                       const Icon(Icons.shop),
-                               ]
-                            
-                               
-                               )
-                               
-                            );
-                          },
-                        );
-                      },
+                final orderData = orderDoc.data() as Map<String, dynamic>;
+                //final hotelId = orderDoc.reference.parent.parent?.id ?? "Unknown";
+
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(orderData['URL']),
+                  ),
+                  title: Text(orderData['FoodName'].toString()),
+                  subtitle: Text(orderData['Description'].toString()),
+                  trailing: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      splashColor: Color.fromARGB(255, 149, 237, 247),
+                      highlightColor: Color.fromARGB(255, 149, 237, 247),
+                      radius: 10,
+                      child: Column(
+                        children: [
+                          Text(orderData['Price'].toString()),
+                          Icon(Icons.shopping_cart_checkout_sharp),
+                        ],
+                      ),
+                      onTap: () {},
                     ),
-                  ],
+                  ),
                 );
               },
             );
