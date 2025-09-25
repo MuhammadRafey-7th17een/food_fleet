@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/rider_homepage.dart';
+import 'package:food_fleet/pages/splash_screen_start.dart';
 import 'firebase_options.dart';
 import 'package:food_fleet/pages/user_homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,6 +16,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Userhomepage());
+    return const MaterialApp(home: StartSplashScreen());
   }
 }
