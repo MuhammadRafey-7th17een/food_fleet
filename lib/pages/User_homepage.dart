@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_fleet/pages/setting_page.dart';
@@ -92,8 +93,10 @@ class _UserhomepageState extends State<Userhomepage> {
                 leading: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      if (!mounted) return;
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const SignUpPage(),

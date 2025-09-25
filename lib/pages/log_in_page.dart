@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'user_homepage.dart'; // import your homepage after login
+import 'user_homepage.dart';
 
 class LogInPage extends StatelessWidget {
   const LogInPage({super.key});
@@ -22,16 +22,14 @@ class LogInPage extends StatelessWidget {
           password: passwordController.text.trim(),
         );
 
-        // ✅ Go to homepage on success
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const Userhomepage()),
         );
       } on FirebaseAuthException catch (e) {
-        // Show error if login fails
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message ?? "Login failed")),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message ?? "Login failed")));
       }
     }
 
