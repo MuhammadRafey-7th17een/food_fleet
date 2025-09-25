@@ -13,11 +13,11 @@ class LogInPage extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     // FirebaseAuth instance
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
 
     Future<void> login() async {
       try {
-        await _auth.signInWithEmailAndPassword(
+        await auth.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
