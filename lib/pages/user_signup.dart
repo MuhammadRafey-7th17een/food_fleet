@@ -1,12 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_fleet/pages/User_homepage.dart';
+import 'package:food_fleet/pages/rider_homepage.dart';
+import 'package:food_fleet/pages/store_home_page.dart';
+
 class UserSignup extends StatefulWidget {
   const UserSignup({super.key});
 
   @override
   State<UserSignup> createState() => _UserSignupState();
 }
-
 
 class _UserSignupState extends State<UserSignup> {
   final _formKey = GlobalKey<FormState>();
@@ -132,19 +137,67 @@ class _UserSignupState extends State<UserSignup> {
                   ),
                   const SizedBox(height: 15),
 
-                 
-
                   // Centered Sign Up button
                   Center(
                     child: SizedBox(
                       width: 150,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Form submitted")),
-                            );
+                            final email = emailController.text.trim();
+                            final password = passwordController.text.trim();
+                            final role = "user";
+                            try {
+                              final credentials = await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                    email: email,
+                                    password: password,
+                                  );
+                              final user = credentials.user;
+                              if (user == null) throw "Creation error";
+
+                              await FirebaseFirestore.instance
+                                  .collection('users')
+                                  .doc(user.uid)
+                                  .set({'email': email, 'role': role});
+
+                              if (role == 'user') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Userhomepage(),
+                                  ),
+                                );
+                              } else if (role == 'store') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const StoreHomePage(),
+                                  ),
+                                );
+                              } else if (role == 'rider') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Riderhomepage(),
+                                  ),
+                                );
+                              }
+                            } on FirebaseAuthException catch (e) {
+                              String message = " ";
+                              if (e.code == "email-already-in-use") {
+                                message = "This email is already registered.";
+                              } else if (e.code == "weak-password") {
+                                message = "Password is too weak.";
+                              } else if (e.code == "invalid-email") {
+                                message = "Invalid email address.";
+                              }
+
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text(message)));
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(

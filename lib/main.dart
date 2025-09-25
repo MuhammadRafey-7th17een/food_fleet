@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/ridersignup.dart';
 import 'package:food_fleet/pages/splash_screen_start.dart';
-import 'package:food_fleet/pages/storesignup.dart';
 import 'package:food_fleet/pages/user_signup.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +16,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home:UserSignup());
+    return const MaterialApp(home: UserSignup());
   }
 }
