@@ -69,6 +69,23 @@ class SettingsPage extends StatelessWidget {
                 child: const Text("Change Password"),
               ),
             ),
+             const Spacer(),
+
+      Center(
+        child: InkWell(
+           onTap: () {
+            debugPrint("Contact Us tapped!");
+          },
+          child: Text(
+            "Contact Us",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ),
           ],
         ),
       ),
