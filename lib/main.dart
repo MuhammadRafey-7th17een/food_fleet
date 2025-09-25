@@ -15,15 +15,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,  // removes the debug banner
-      title: "Food Fleet",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // Change this to the page you want to open first
-      home:Userhomepage(),  
-      // home: const RiderHomepage(),
-    );
+    return const MaterialApp(home: Userhomepage());
   }
 }
