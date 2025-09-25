@@ -18,13 +18,12 @@ class _StartSplashScreenState extends State<StartSplashScreen> {
   @override
   void initState() {
     super.initState();
-    //_checkUser();
+    _checkUser();
   }
 
-  /*Future<void> _checkUser() async {
+  Future<void> _checkUser() async {
     final user = FirebaseAuth.instance.currentUser;
 
-    if (!mounted) return;
     if (user == null) {
       Navigator.pushReplacement(
         context,
@@ -35,8 +34,6 @@ class _StartSplashScreenState extends State<StartSplashScreen> {
           .collection('users')
           .doc(user.uid)
           .get();
-
-      if (!mounted) return;
 
       if (!doc.exists) {
         Navigator.pushReplacement(
@@ -69,7 +66,7 @@ class _StartSplashScreenState extends State<StartSplashScreen> {
         );
       }
     }
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {

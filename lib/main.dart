@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/rider_homepage.dart';
+import 'package:food_fleet/pages/ridersignup.dart';
 import 'package:food_fleet/pages/splash_screen_start.dart';
 import 'firebase_options.dart';
 import 'package:food_fleet/pages/user_homepage.dart';
