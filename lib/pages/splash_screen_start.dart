@@ -126,7 +126,7 @@ class _StartSplashScreenState extends State<StartSplashScreen> {
             ),
           ],
         ),
-     ),
-);
-}
+      ),
+    );
+  }
 }
