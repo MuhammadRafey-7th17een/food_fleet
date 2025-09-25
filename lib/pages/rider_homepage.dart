@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_fleet/pages/rider_settings.dart';
 
 class Riderhomepage extends StatefulWidget {
   const Riderhomepage({super.key});
@@ -47,7 +48,12 @@ class _RiderhomepageState extends State<Riderhomepage> {
                   const SizedBox(height: 50),
                   IconButton(
                     icon: const Icon(Icons.settings, size: 40),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const RiderSettings()),
+                    );
+                    },
                   ),
                 ],
               ),
