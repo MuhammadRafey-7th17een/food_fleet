@@ -220,8 +220,21 @@ class _UserhomepageState extends State<Userhomepage> {
                   ),
                   title: Text(orderData['FoodName'].toString()),
                   subtitle: Text(orderData['Description'].toString()),
-                  trailing: Text(orderData['Price'].toString()),
-                  isThreeLine: true,
+                  trailing: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      splashColor: Color.fromARGB(255, 149, 237, 247),
+                      highlightColor: Color.fromARGB(255, 149, 237, 247),
+                      radius: 10,
+                      child: Column(
+                        children: [
+                          Text(orderData['Price'].toString()),
+                          Icon(Icons.shopping_cart_checkout_sharp),
+                        ],
+                      ),
+                      onTap: () {},
+                    ),
+                  ),
                 );
               },
             );
