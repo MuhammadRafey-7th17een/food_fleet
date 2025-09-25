@@ -214,6 +214,24 @@ class _UserSignupState extends State<UserSignup> {
                       ),
                     ),
                   ),
+                
+
+                SizedBox(height: 30,),
+      Center(
+        child: InkWell(
+           onTap: () {
+            debugPrint("Contact Us !");
+          },
+          child: Text(
+            "Contact Us",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ),
                 ],
               ),
             ),

@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
+
+
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+// Get the current logged-in user
+    User? user = FirebaseAuth.instance.currentUser;
+
+
+
+
+
+    
     return Scaffold(
       backgroundColor: const Color(0xFF98BCF9), // Body color
       appBar: AppBar(
@@ -20,14 +38,14 @@ class SettingsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
           
-            const Text(
-              "User Name: U-name",
+             Text(
+              "User Name: ${user?.displayName ?? 'Not Set'}",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const Divider(color: Colors.black, thickness: 1),
             const SizedBox(height: 8),
-            const Text(
-              "Email:example@gmail.com",
+             Text(
+               "Email: ${user?.email ?? 'No Email'}",
               style: TextStyle(fontSize: 15),
             ),
             const Divider(color: Colors.black, thickness: 1),

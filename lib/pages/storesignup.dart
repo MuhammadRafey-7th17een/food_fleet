@@ -166,6 +166,21 @@ class _StoresignupState extends State<Storesignup> {
                       ),
                     ),
                   ),
+                   Center(
+        child: InkWell(
+           onTap: () {
+            debugPrint("Contact Us !");
+          },
+          child: Text(
+            "Contact Us",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ),
                 ],
               ),
             ),
