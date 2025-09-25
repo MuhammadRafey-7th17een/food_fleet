@@ -215,7 +215,8 @@ class _UserhomepageState extends State<Userhomepage> {
                 final orderDoc = orderDetails[index];
 
                 final orderData = orderDoc.data() as Map<String, dynamic>;
-                //final hotelId = orderDoc.reference.parent.parent?.id ?? "Unknown";
+                final hotelId =
+                    orderDoc.reference.parent.parent?.id ?? "Unknown";
 
                 return ListTile(
                   leading: CircleAvatar(
@@ -230,13 +231,24 @@ class _UserhomepageState extends State<Userhomepage> {
                       splashColor: Color.fromARGB(255, 149, 237, 247),
                       highlightColor: Color.fromARGB(255, 149, 237, 247),
                       radius: 10,
+
                       child: Column(
                         children: [
                           Text(orderData['Price'].toString()),
                           Icon(Icons.shopping_cart_checkout_sharp),
                         ],
                       ),
-                      onTap: () {},
+                      onTap: () async {
+                        await FirebaseFirestore.instance
+                            .collection('userCartTempCollection')
+                            .doc()
+                            .set({
+                              'hotel_id': hotelId,
+                              'ItemName': orderData['FoodName'].toString(),
+                              'Price': orderData['Price'].toString(),
+                              'URL': orderData['URL'].toString(),
+                            });
+                      },
                     ),
                   ),
                 );
