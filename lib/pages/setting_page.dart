@@ -74,7 +74,7 @@ class SettingsPage extends StatelessWidget {
       Center(
         child: InkWell(
            onTap: () {
-            debugPrint("Contact Us tapped!");
+            debugPrint("Contact Us !");
           },
           child: Text(
             "Contact Us",
