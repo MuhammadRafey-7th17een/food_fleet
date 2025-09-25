@@ -173,61 +173,10 @@ class _RidersignupState extends State<Ridersignup> {
                   ),
                   const SizedBox(height: 15),
 
-                  // Phone Number
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-                    child: TextFormField(
-                      controller: numberController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Phone Number",
-                        hintText: "+92 330-111-111",
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      keyboardType: TextInputType.phone,
-                      validator: (value) => value == null || value.isEmpty
-                          ? "Enter number"
-                          : null,
-                    ),
-                  ),
+                 
                   const SizedBox(height: 25),
 
-                  // Location
-                  SizedBox(
-                    width: 290,
-                    height: 40,
-                    child: TextFormField(
-                      controller: locationController,
-                      style: const TextStyle(color: Color(0xFFFFD0EC)),
-                      decoration: InputDecoration(
-                        labelText: "Location",
-                        hintText: "City / Area",
-                        labelStyle: const TextStyle(color: Color(0xFFFFD0EC)),
-                        filled: true,
-                        fillColor: const Color(0xFF8576FF),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      validator: (value) =>
-                          value == null || value.isEmpty ? "Enter location" : null,
-                    ),
-                  ),
-                  const SizedBox(height: 25),
+                
 
                   // Sign Up button
                   Center(
