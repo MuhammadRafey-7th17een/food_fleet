@@ -49,7 +49,7 @@ class _RiderhomepageState extends State<Riderhomepage> {
                   IconButton(
                     icon: const Icon(Icons.settings, size: 40),
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const RiderSettings()),
                     );
