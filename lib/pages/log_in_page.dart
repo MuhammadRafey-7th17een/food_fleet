@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'user_homepage.dart'; // import your homepage after login
+import 'package:food_fleet/pages/rider_homepage.dart';
+import 'package:food_fleet/pages/store_home_page.dart';
+import 'user_homepage.dart';
 
 class LogInPage extends StatelessWidget {
   const LogInPage({super.key});
@@ -13,27 +17,6 @@ class LogInPage extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     // FirebaseAuth instance
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-
-    Future<void> login() async {
-      try {
-        await _auth.signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
-
-        // ✅ Go to homepage on success
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const Userhomepage()),
-        );
-      } on FirebaseAuthException catch (e) {
-        // Show error if login fails
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message ?? "Login failed")),
-        );
-      }
-    }
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -106,7 +89,6 @@ class LogInPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // 🔒 Password
               Container(
                 width: 290,
                 height: 40,
@@ -141,7 +123,6 @@ class LogInPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // 🔘 Login button
               Container(
                 width: 107,
                 height: 32,
@@ -159,9 +140,77 @@ class LogInPage extends StatelessWidget {
                         style: TextStyle(color: Color(0xFFFFD0EC)),
                       ),
                     ),
-                    onTap: () {
+                    onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        login();
+                        final email = emailController.text.trim();
+                        final password = passwordController.text.trim();
+
+                        if (email.isEmpty || password.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Please enter email and password"),
+                            ),
+                          );
+                        }
+                        try {
+                          final credentials = await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                email: email,
+                                password: password,
+                              );
+
+                          final user = credentials.user;
+                          if (user == null) throw "Login Failed";
+
+                          final doc = await FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(user.uid)
+                              .get();
+                          if (!doc.exists) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("User role not found"),
+                              ),
+                            );
+                            return;
+                          }
+
+                          final role = doc['role'];
+
+                          if (role == "user") {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context_) => const Userhomepage(),
+                              ),
+                            );
+                          } else if (role == "store") {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const StoreHomePage(),
+                              ),
+                            );
+                          } else if (role == "rider") {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context_) => const Riderhomepage(),
+                              ),
+                            );
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          String message = "Login failed";
+                          if (e.code == "user-not-found") {
+                            message = "No account found with this email";
+                          } else if (e.code == "wrong-password") {
+                            message = "Incorrect password";
+                          }
+
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text(message)));
+                        }
                       }
                     },
                   ),
