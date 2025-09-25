@@ -201,7 +201,7 @@ class _UserhomepageState extends State<Userhomepage> {
                 final hotelData = hotel.data() as Map<String, dynamic>;
                 return Column(
                   children: [
-                    ListTile(title: hotelData['HotelName'] ?? 'No name'),
+                    ListTile(title: Text(hotelData['HotelName'] ?? 'No name')),
                     StreamBuilder<QuerySnapshot>(
                       stream: collection
                           .doc(hotelid)
@@ -216,18 +216,20 @@ class _UserhomepageState extends State<Userhomepage> {
                           );
                         }
                         final orders = orderSnapshots.data!.docs;
-                        return Column(
-                          children: orders.map((orderDocs) {
+                        return ListView.builder(
+                          itemCount: orders.length,
+                          itemBuilder: (BuildContext context, index) {
                             final orderData =
-                                orderDocs.data as Map<String, dynamic>;
+                                orders[index].data() as Map<String, dynamic>;
                             return ListTile(
-                              leading: Image.network(orderData['URL']),
-                              title: orderData['FoodName'],
-                              subtitle: orderData['Description'],
-                              trailing: orderData['Price'],
-                              isThreeLine: true,
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(orderData['URL']),
+                              ),
+                              title: Text(orderData['FoodName']),
+                              subtitle: Text(orderData['Description']),
+                              trailing: Text(orderData['Price']),
                             );
-                          }).toList(),
+                          },
                         );
                       },
                     ),
