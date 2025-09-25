@@ -227,7 +227,15 @@ class _UserhomepageState extends State<Userhomepage> {
                               ),
                               title: Text(orderData['FoodName']),
                               subtitle: Text(orderData['Description']),
-                              trailing: Text(orderData['Price']),
+                              trailing:
+                               
+                               Column(children : [Text(orderData['Price'].toString()),
+                                       const Icon(Icons.shop),
+                               ]
+                            
+                               
+                               )
+                               
                             );
                           },
                         );
