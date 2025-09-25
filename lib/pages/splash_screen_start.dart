@@ -39,7 +39,7 @@ class _StartSplashScreenState extends State<StartSplashScreen> {
     try {
       final doc = await FirebaseFirestore.instance
           .collection('users')
-          .doc('uid')
+          .doc(user.uid)
           .get();
 
       if (!mounted) return;
