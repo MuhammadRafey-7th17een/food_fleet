@@ -32,17 +32,17 @@ class SettingsPage extends StatelessWidget {
               "Email: ${user?.email ?? 'No Email'}",
               style: TextStyle(fontSize: 15),
             ),
-            const Divider(color: Colors.black, thickness: 1),
-            const SizedBox(height: 40),
+             Divider(color: Colors.black, thickness: 1),
+             SizedBox(height: 40),
 
             // Buttons
            
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3ABEF9), // Button color
+                  backgroundColor: const Color(0xFF3ABEF9), 
                   foregroundColor: Colors.black,
                 ),
                 onPressed: () {},
