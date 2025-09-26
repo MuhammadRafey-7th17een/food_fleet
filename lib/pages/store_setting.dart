@@ -85,6 +85,23 @@ class StoreSetting extends StatelessWidget {
                 child: const Text("Change Number"),
               ),
             ),
+             const Spacer(),
+
+            Center(
+              child: InkWell(
+                onTap: () {
+                  debugPrint("Contact Us !");
+                },
+                child: Text(
+                  "Contact Us",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
