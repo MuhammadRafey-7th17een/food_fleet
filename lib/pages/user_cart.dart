@@ -10,10 +10,22 @@ class UserCart extends StatefulWidget {
   State<UserCart> createState() => _UserCartState();
 }
 
+final userId = FirebaseAuth.instance.currentUser!.uid;
+String price = '';
+double showPrice = 0.0;
+/*Future<void> calculatePrice() async {
+  final docData = await FirebaseFirestore.instance
+      .collection('userCartTempCollection')
+      .where('UID', isEqualTo: userId)
+      .get();
+  final details = docData.docs;
+  for (var doc in details) {
+    price = doc['Price'].toString();
+    showPrice = showPrice + double.parse(price);
+  }
+}*/
+
 class _UserCartState extends State<UserCart> {
-  String price = '';
-  double showPrice = 0.0;
-  final userId = FirebaseAuth.instance.currentUser!.uid;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -82,12 +94,13 @@ class _UserCartState extends State<UserCart> {
                 if (orderDetials.isEmpty) {
                   return const Center(child: Text("No orders found"));
                 }
-                for (var doc in orderDetials) {
+
+                /*for (var doc in orderDetials) {
                   final data = doc.data() as Map<String, dynamic>;
                   price = data['Price'].toString();
                   showPrice = showPrice + double.parse(price);
-                }
-
+                }*/
+                //calculatePrice();
                 return Column(
                   children: [
                     Text("Total: $showPrice"),
@@ -107,28 +120,30 @@ class _UserCartState extends State<UserCart> {
                             ),
                             title: Text(orderData['ItemName'].toString()),
                             subtitle: Text(orderData['hotel_id'].toString()),
-                          //  trailing: Text(orderData['Price'].toString()),
-                             trailing: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: Color.fromARGB(255, 149, 237, 247),
-                      highlightColor: Color.fromARGB(255, 149, 237, 247),
-                      radius: 10,
-                      onTap: ()async{
-
-                        await orderDoc.reference.delete();
-
-                      },
-                      child: Column(
-                        children: [
-                          Text(orderData['Price'].toString()),
-                          Icon(Icons.delete),
-                        ],
-                      )
-                      ),
-                             )
-                          
-                          )   ;  
+                            //  trailing: Text(orderData['Price'].toString()),
+                            trailing: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                splashColor: Color.fromARGB(255, 149, 237, 247),
+                                highlightColor: Color.fromARGB(
+                                  255,
+                                  149,
+                                  237,
+                                  247,
+                                ),
+                                radius: 10,
+                                onTap: () async {
+                                  await orderDoc.reference.delete();
+                                },
+                                child: Column(
+                                  children: [
+                                    Text(orderData['Price'].toString()),
+                                    Icon(Icons.delete),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
                         },
                       ),
                     ),
