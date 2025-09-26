@@ -19,15 +19,13 @@ class _RidersignupState extends State<Ridersignup> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
-  final TextEditingController numberController = TextEditingController();
+
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    locationController.dispose();
-    numberController.dispose();
+   
     super.dispose();
   }
 
