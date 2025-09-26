@@ -66,7 +66,9 @@ class SignUpPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const UserSignup()),
+                      MaterialPageRoute(
+                        builder: (_) => const Storesignup(role: 'user'),
+                      ),
                     );
                   },
                   child: const Text(
@@ -92,7 +94,9 @@ class SignUpPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const Storesignup()),
+                      MaterialPageRoute(
+                        builder: (_) => const Storesignup(role: 'store'),
+                      ),
                     );
                   },
                   child: const Text(
@@ -118,7 +122,9 @@ class SignUpPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const Ridersignup()),
+                      MaterialPageRoute(
+                        builder: (_) => const Storesignup(role: 'rider'),
+                      ),
                     );
                   },
                   child: const Text(
@@ -143,7 +149,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                   Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const LogInPage()),
                     );
@@ -154,12 +160,8 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
               ),
-
-              
             ],
-            
           ),
-          
         ),
       ),
     );

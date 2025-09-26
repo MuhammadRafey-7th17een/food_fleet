@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/rider_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_fleet/pages/ridersignup.dart';
+import 'package:food_fleet/pages/signup_page.dart';
+
 class Riderhomepage extends StatefulWidget {
   const Riderhomepage({super.key});
 
@@ -30,7 +31,7 @@ class _RiderhomepageState extends State<Riderhomepage> {
       ),
 
       // Drawer
-        drawer: Drawer(
+      drawer: Drawer(
         elevation: 20,
         shadowColor: Color(0xFF45FFCA),
         surfaceTintColor: Color(0xFF35A29F),
@@ -58,7 +59,7 @@ class _RiderhomepageState extends State<Riderhomepage> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Ridersignup(),
+                          builder: (context) => const SignUpPage(),
                         ),
                       );
                     },
@@ -69,8 +70,7 @@ class _RiderhomepageState extends State<Riderhomepage> {
                   ),
                 ),
               ),
-             
-             
+
               SizedBox(height: 10),
               ListTile(
                 title: Material(
@@ -109,9 +109,8 @@ class _RiderhomepageState extends State<Riderhomepage> {
       // Body
       body: Column(
         children: [
-          const Spacer(), 
+          const Spacer(),
 
-        
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
