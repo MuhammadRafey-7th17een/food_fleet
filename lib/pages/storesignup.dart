@@ -7,7 +7,8 @@ import 'package:food_fleet/pages/rider_homepage.dart';
 import 'package:food_fleet/pages/store_home_page.dart';
 
 class Storesignup extends StatefulWidget {
-  const Storesignup({super.key});
+  final String role;
+  const Storesignup({super.key, required this.role});
 
   @override
   State<Storesignup> createState() => _StoresignupState();
@@ -152,7 +153,7 @@ class _StoresignupState extends State<Storesignup> {
                           if (formKey.currentState!.validate()) {
                             final email = emailController.text.trim();
                             final password = passwordController.text.trim();
-                            final role = "store";
+
                             try {
                               final credentials = await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
@@ -165,23 +166,23 @@ class _StoresignupState extends State<Storesignup> {
                               await FirebaseFirestore.instance
                                   .collection('users')
                                   .doc(user.uid)
-                                  .set({'email': email, 'role': role});
+                                  .set({'email': email, 'role': widget.role});
 
-                              if (role == 'user') {
+                              if (widget.role == 'user') {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => const Userhomepage(),
                                   ),
                                 );
-                              } else if (role == 'store') {
+                              } else if (widget.role == 'store') {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => const StoreHomePage(),
                                   ),
                                 );
-                              } else if (role == 'rider') {
+                              } else if (widget.role == 'rider') {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
