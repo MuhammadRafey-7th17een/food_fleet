@@ -114,11 +114,15 @@ class _UserCartState extends State<UserCart> {
                       splashColor: Color.fromARGB(255, 149, 237, 247),
                       highlightColor: Color.fromARGB(255, 149, 237, 247),
                       radius: 10,
+                      onTap: ()async{
 
+                        await orderDoc.reference.delete();
+
+                      },
                       child: Column(
                         children: [
                           Text(orderData['Price'].toString()),
-                          Icon(Icons.shopping_cart_checkout_sharp),
+                          Icon(Icons.delete),
                         ],
                       )
                       ),
