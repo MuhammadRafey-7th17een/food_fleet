@@ -107,8 +107,24 @@ class _UserCartState extends State<UserCart> {
                             ),
                             title: Text(orderData['ItemName'].toString()),
                             subtitle: Text(orderData['hotel_id'].toString()),
-                            trailing: Text(orderData['Price'].toString()),
-                          );
+                          //  trailing: Text(orderData['Price'].toString()),
+                             trailing: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      splashColor: Color.fromARGB(255, 149, 237, 247),
+                      highlightColor: Color.fromARGB(255, 149, 237, 247),
+                      radius: 10,
+
+                      child: Column(
+                        children: [
+                          Text(orderData['Price'].toString()),
+                          Icon(Icons.shopping_cart_checkout_sharp),
+                        ],
+                      )
+                      ),
+                             )
+                          
+                          )   ;  
                         },
                       ),
                     ),
