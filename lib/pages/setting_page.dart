@@ -36,17 +36,7 @@ class SettingsPage extends StatelessWidget {
             const SizedBox(height: 40),
 
             // Buttons
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3ABEF9), // Button color
-                  foregroundColor: Colors.black, // Text color
-                ),
-                onPressed: () {},
-                child: const Text("Change User Name"),
-              ),
-            ),
+           
             const SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
