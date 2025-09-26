@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/log_in_page.dart';
-import 'package:food_fleet/pages/ridersignup.dart';
+
 import 'package:food_fleet/pages/storesignup.dart';
-import 'package:food_fleet/pages/user_signup.dart';
+
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
