@@ -109,9 +109,9 @@ class _RiderhomepageState extends State<Riderhomepage> {
       // Body
       body: Column(
         children: [
-          const Spacer(), // pushes content to center
+          const Spacer(), 
 
-          // Accept + Reject buttons across full row
+        
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(

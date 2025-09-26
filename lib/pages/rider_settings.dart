@@ -28,8 +28,8 @@ class RiderSettings extends StatelessWidget {
               "Email:example@gmail.com",
               style: TextStyle(fontSize: 15),
             ),
-            const Divider(color: Colors.black, thickness: 1),
-            const SizedBox(height: 40),
+             Divider(color: Colors.black, thickness: 1),
+             SizedBox(height: 40),
 
             // Buttons
             SizedBox(
