@@ -16,6 +16,7 @@ class Userhomepage extends StatefulWidget {
 
 class _UserhomepageState extends State<Userhomepage> {
   final _formKey = GlobalKey<FormState>();
+  final uid = FirebaseAuth.instance.currentUser!.uid;
 
   final TextEditingController emailController = TextEditingController();
   final collection = FirebaseFirestore.instance.collectionGroup(
@@ -237,6 +238,7 @@ class _UserhomepageState extends State<Userhomepage> {
                               'ItemName': orderData['FoodName'].toString(),
                               'Price': orderData['Price'].toString(),
                               'URL': orderData['URL'].toString(),
+                              'UID': uid,
                             });
                       },
                     ),
