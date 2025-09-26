@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food_fleet/pages/User_homepage.dart';
+import 'package:food_fleet/pages/store_home_page.dart';
 
 import 'rider_homepage.dart'; // make sure this path is correct
 
@@ -27,45 +29,6 @@ class _RidersignupState extends State<Ridersignup> {
     locationController.dispose();
     numberController.dispose();
     super.dispose();
-  }
-
-  Future<void> _signUp() async {
-    if (_formKey.currentState!.validate()) {
-      try {
-        // Create account in Firebase Auth
-        final credential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
-
-        // Save additional rider data in Firestore
-        await FirebaseFirestore.instance
-            .collection("riders")
-            .doc(credential.user!.uid)
-            .set({
-          "email": emailController.text.trim(),
-          "phone": numberController.text.trim(),
-          "location": locationController.text.trim(),
-          "createdAt": DateTime.now(),
-        });
-
-        // Show success
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Account created successfully!")),
-        );
-
-        // Navigate to Rider Home Page
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const Riderhomepage()),
-        );
-      } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error: ${e.message}")),
-        );
-      }
-    }
   }
 
   @override
@@ -173,10 +136,7 @@ class _RidersignupState extends State<Ridersignup> {
                   ),
                   const SizedBox(height: 15),
 
-                 
                   const SizedBox(height: 25),
-
-                
 
                   // Sign Up button
                   Center(
@@ -184,11 +144,69 @@ class _RidersignupState extends State<Ridersignup> {
                       width: 150,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: _signUp,
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final email = emailController.text.trim();
+                            final password = passwordController.text.trim();
+                            final role = "rider";
+                            try {
+                              final credentials = await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                    email: email,
+                                    password: password,
+                                  );
+                              final user = credentials.user;
+                              if (user == null) throw "Creation error";
+
+                              await FirebaseFirestore.instance
+                                  .collection('users')
+                                  .doc(user.uid)
+                                  .set({'email': email, 'role': role});
+
+                              if (role == 'user') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Userhomepage(),
+                                  ),
+                                );
+                              } else if (role == 'store') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const StoreHomePage(),
+                                  ),
+                                );
+                              } else if (role == 'rider') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Riderhomepage(),
+                                  ),
+                                );
+                              }
+                            } on FirebaseAuthException catch (e) {
+                              String message = " ";
+                              if (e.code == "email-already-in-use") {
+                                message = "This email is already registered.";
+                              } else if (e.code == "weak-password") {
+                                message = "Password is too weak.";
+                              } else if (e.code == "invalid-email") {
+                                message = "Invalid email address.";
+                              }
+
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text(message)));
+                            }
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 50),
                           backgroundColor: const Color(0xFF2C2C2C), // button bg
-                          foregroundColor: const Color(0xFFFFD0EC), // text color
+                          foregroundColor: const Color(
+                            0xFFFFD0EC,
+                          ), // text color
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
