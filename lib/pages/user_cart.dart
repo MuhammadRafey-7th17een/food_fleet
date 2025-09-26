@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +13,7 @@ class UserCart extends StatefulWidget {
 class _UserCartState extends State<UserCart> {
   String price = '';
   double showPrice = 0.0;
+  final userId = FirebaseAuth.instance.currentUser!.uid;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -38,7 +40,24 @@ class _UserCartState extends State<UserCart> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                final currentCart = await FirebaseFirestore.instance
+                    .collection('userCartTempCollection')
+                    .where('UID', isEqualTo: userId)
+                    .get();
+
+                await FirebaseFirestore.instance
+                    .collection('userHistoryCollection')
+                    .doc()
+                    .set({
+                      'UID': userId,
+                      'TotalPrice': showPrice.toString(),
+                      'date': FieldValue.serverTimestamp(),
+                    });
+
+                for (var doc in currentCart.docs) {
+                  await doc.reference.delete();
+                }
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Order Confirmed!")),
                 );
@@ -50,6 +69,7 @@ class _UserCartState extends State<UserCart> {
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('userCartTempCollection')
+                  .where('UID', isEqualTo: userId)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
