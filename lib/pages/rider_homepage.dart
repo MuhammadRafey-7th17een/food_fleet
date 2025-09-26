@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_fleet/pages/rider_settings.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food_fleet/pages/ridersignup.dart';
 class Riderhomepage extends StatefulWidget {
   const Riderhomepage({super.key});
 
@@ -28,10 +30,13 @@ class _RiderhomepageState extends State<Riderhomepage> {
       ),
 
       // Drawer
-      drawer: Drawer(
+        drawer: Drawer(
         elevation: 20,
+        shadowColor: Color(0xFF45FFCA),
+        surfaceTintColor: Color(0xFF35A29F),
         child: Container(
-          decoration: const BoxDecoration(
+          height: double.infinity,
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -39,52 +44,68 @@ class _RiderhomepageState extends State<Riderhomepage> {
               stops: [0.70, 1.0],
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: ListView(
+            padding: EdgeInsets.zero,
             children: [
-              // Top icons
-              Column(
-                children: [
-                  const SizedBox(height: 50),
-                  IconButton(
-                    icon: const Icon(Icons.settings, size: 40),
+              SizedBox(height: 50),
+              ListTile(
+                leading: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      if (!mounted) return;
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Ridersignup(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.logout),
+                    iconSize: 30,
+                    splashColor: Color(0xFFE3F6FF),
+                    highlightColor: Color(0xFFE3F6FF),
+                  ),
+                ),
+              ),
+             
+             
+              SizedBox(height: 10),
+              ListTile(
+                title: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
                     onPressed: () {
                       Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const RiderSettings()),
-                    );
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RiderSettings(),
+                        ),
+                      );
                     },
+                    icon: Icon(Icons.settings),
+                    iconSize: 60,
+                    splashColor: Color(0xFFE3F6FF),
+                    highlightColor: Color(0xFFE3F6FF),
                   ),
-                ],
+                ),
+                subtitle: Align(
+                  alignment: Alignment.center,
+                  child: Text("Setting", style: TextStyle(fontSize: 20)),
+                ),
               ),
 
-              // Bottom FOOD FLEET logo
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.contain,
-                    ),
-                    const Text(
-                      "FOOD FLEET",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.cyanAccent,
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(height: 50),
+              Image.asset(
+                'assets/file_000000008fdc61faa669bc26c514dbc0 (1).png',
+
+                fit: BoxFit.contain,
               ),
             ],
           ),
         ),
       ),
-
       // Body
       body: Column(
         children: [
