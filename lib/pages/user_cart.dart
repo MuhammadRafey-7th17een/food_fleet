@@ -53,7 +53,7 @@ class _UserCartState extends State<UserCart> {
             return const Center(child: Text("No orders found"));
           }
 
-          //  Cal
+          //  Ca
           double totalPrice = orderDetials.fold<double>(0, (sum, doc) {
             final data = doc.data() as Map<String, dynamic>;
             final itemPrice = data['Price'];
